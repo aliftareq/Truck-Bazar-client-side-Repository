@@ -96,7 +96,7 @@ const Login = () => {
                         {loginError && <p className='text-red-400'>{loginError}</p>}
                     </div>
                 </form>
-                <p className='text-center mt-3'>New to Doctors Portal?
+                <p className='text-center mt-3'>New to Truck Bazar ?
                     <span className='text-secondary ml-2 underline block lg:inline'>
                         <Link to='/register'>Create new account</Link>
                     </span>

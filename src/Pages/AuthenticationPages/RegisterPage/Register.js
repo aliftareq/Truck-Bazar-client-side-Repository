@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useToken from '../../../Hooks/useToken';
 
 const Register = () => {
     //context values 
@@ -12,17 +13,17 @@ const Register = () => {
     const [createdUserEmail, setCreatedUserEmail] = useState('')
 
     //getting access token
-    // const [token] = useToken(createdUserEmail)
+    const [token] = useToken(createdUserEmail)
 
-    // //navigation
-    // const navigate = useNavigate()
-    // const location = useLocation()
-    // const from = location?.state?.from?.pathname || '/'
+    //navigation
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     //navigating
-    // if (token) {
-    //     navigate(from, { replace: true })
-    // }
+    if (token) {
+        navigate(from, { replace: true })
+    }
 
     //react form hook
     const { register, handleSubmit, formState: { errors } } = useForm()
@@ -86,7 +87,7 @@ const Register = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                // setCreatedUserEmail(email)
+                setCreatedUserEmail(email)
             })
     }
 
