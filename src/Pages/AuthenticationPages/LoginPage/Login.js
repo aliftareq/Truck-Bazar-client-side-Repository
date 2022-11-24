@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import useToken from '../../../Hooks/useToken';
 
 const Login = () => {
     //context value 
@@ -12,17 +13,17 @@ const Login = () => {
     const [loginUserEmail, setLoginUserEmail] = useState('')
 
     //token hook
-    // const [token] = useToken(loginUserEmail)
+    const [token] = useToken(loginUserEmail)
 
     //navigation
-    // const navigate = useNavigate()
-    // const location = useLocation()
-    // const from = location?.state?.from?.pathname || '/'
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.pathname || '/'
 
     //navigate
-    // if (token) {
-    //     navigate(from, { replace: true })
-    // }
+    if (token) {
+        navigate(from, { replace: true })
+    }
 
     //react form hook
     const { register, formState: { errors }, handleSubmit } = useForm()
@@ -45,13 +46,32 @@ const Login = () => {
                 setloginError(err.message)
             })
     }
+
+    // send user data to database
+    const saveUserInDB = (name, email, role = 'Buyer') => {
+        const user = { name, email, role }
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setLoginUserEmail(email)
+            })
+    }
+
+
     //handler for social login
     const handleGoogleSignIn = () => {
         LoginWithGoogle()
             .then(result => {
                 console.log(result.user);
+                saveUserInDB(result.user.displayName, result.user.email)
                 toast.success('successfully sign-In with google')
-                // navigate(from, { replace: true })
             })
             .catch(err => {
                 console.log(err);
