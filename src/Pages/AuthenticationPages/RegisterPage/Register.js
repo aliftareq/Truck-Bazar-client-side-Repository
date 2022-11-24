@@ -53,7 +53,7 @@ const Register = () => {
                             updateUser(userInfo)
                                 .then(() => {
                                     setSignUpError('')
-                                    // saveUserInDB(data.name, data.email)
+                                    saveUserInDB(data.name, data.email, data.role)
                                     toast.success('user created succesfully')
                                 })
                                 .catch(err => {
@@ -73,22 +73,22 @@ const Register = () => {
 
     }
 
-    //send user data to database
-    // const saveUserInDB = (name, email) => {
-    //     const user = { name, email }
-    //     fetch(`https://doctors-portal-server-lyart-eight.vercel.app/users`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify(user)
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log('saveUser', data);
-    //             setCreatedUserEmail(email)
-    //         })
-    // }
+    // send user data to database
+    const saveUserInDB = (name, email, role = 'Buyer') => {
+        const user = { name, email, role }
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                // setCreatedUserEmail(email)
+            })
+    }
 
 
 
@@ -98,7 +98,7 @@ const Register = () => {
         LoginWithGoogle()
             .then(result => {
                 console.log(result.user);
-                // saveUserInDB(result.user.displayName, result.user.email)
+                saveUserInDB(result.user.displayName, result.user.email)
                 toast.success('successfully sign-In with google')
             })
             .catch(err => {
