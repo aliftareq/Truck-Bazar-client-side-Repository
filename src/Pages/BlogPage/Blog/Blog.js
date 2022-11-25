@@ -2,7 +2,7 @@ import React from 'react';
 
 const Blog = () => {
     return (
-        <section className="bg-gray-800 text-gray-100 px-3 py-4 lg:p-10 rounded mx-3 my-4 lg:m-10">
+        <section className="bg-black text-gray-100 px-3 py-4 lg:p-10 rounded mx-3 my-4 lg:m-10">
             <div className="container flex flex-col justify-center p-4 mx-auto md:p-8">
                 <h2 className="mb-5 lg:mb-12 text-sm lg:text-4xl font-bold leading-none text-amber-300 text-center">Some Important Questions About React</h2>
                 <div className="flex flex-col divide-y sm:px-8 lg:px-12 xl:px-32 divide-gray-700">
