@@ -108,13 +108,13 @@ const Register = () => {
             })
     }
     return (
-        <section className='h-[600px] lg:h-[700px] flex justify-center items-center'>
-            <div className='w-64 lg:w-96'>
-                <h1 className='text-4xl text-center'>Register</h1>
+        <section className='flex justify-center items-center'>
+            <div className='w-64 lg:w-2/5 shadow-lg px-5 lg:px-10 py-5 rounded-lg my-10 bg-slate-900'>
+                <h1 className='text-4xl text-center text-white'>Register</h1>
                 <form onSubmit={handleSubmit(handleRegister)}>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Name</span>
+                            <span className="label-text text-white">Name</span>
                         </label>
                         <input type="text"
                             placeholder="Jhankar Mahabub"
@@ -127,7 +127,7 @@ const Register = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">E-mail</span>
+                            <span className="label-text text-white">E-mail</span>
                         </label>
                         <input type="email"
                             placeholder="example@gmail.com"
@@ -140,7 +140,7 @@ const Register = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text text-white">Password</span>
                         </label>
                         <input type="password"
                             placeholder="*******"
@@ -155,7 +155,7 @@ const Register = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Image</span>
+                            <span className="label-text text-white">Image</span>
                         </label>
                         <input type="file"
                             className="file-input file-input-bordered w-full max-w-xs"
@@ -166,7 +166,7 @@ const Register = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Join as a</span>
+                            <span className="label-text text-white">Join as a</span>
                         </label>
                         <select className="select select-primary w-1/2"
                             {...register("role", {
@@ -178,19 +178,19 @@ const Register = () => {
                         </select>
                         {errors.role && <p className='text-red-400' role="alert">{errors.role?.message}</p>}
                     </div>
-                    <input className='btn btn-accent w-full mt-4' value='Register' type="submit" />
+                    <input className='btn bg-amber-500 hover:bg-amber-400 w-full mt-4' value='Register' type="submit" />
                     <div className='mt-3'>
                         {signUpError && <p className='text-red-400'>{signUpError}</p>}
                     </div>
                 </form>
-                <p className='text-center mt-3'>Already have an account?
-                    <span className='text-secondary ml-2 underline block lg:inline'>
+                <p className='text-center text-white mt-3'>Already have an account?
+                    <span className='text-yellow-300 ml-2 underline block lg:inline'>
                         <Link to='/login'>Login</Link>
                     </span>
                 </p>
-                <div className="divider">OR</div>
+                <div className="divider bg-white rounded-2xl">OR</div>
                 <div>
-                    <button onClick={handleGoogleSignIn} className='btn btn-outline  w-full'>CONTINUE WITH GOOGLE</button>
+                    <button onClick={handleGoogleSignIn} className='btn btn-warning btn-outline  w-full'>CONTINUE WITH GOOGLE</button>
                 </div>
             </div>
         </section>

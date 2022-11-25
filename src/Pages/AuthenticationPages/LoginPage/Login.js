@@ -79,13 +79,13 @@ const Login = () => {
             })
     }
     return (
-        <section className='h-[500px] lg:h-[600px] flex justify-center items-center'>
-            <div className='w-64 lg:w-96'>
-                <h1 className='text-4xl text-center'>Login</h1>
+        <section className='flex justify-center items-center'>
+            <div className='w-64 lg:w-2/5 shadow-lg px-5 lg:px-10 py-5 rounded-lg my-10 bg-slate-900'>
+                <h1 className='text-4xl text-center text-white'>Login</h1>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">E-mail</span>
+                            <span className="label-text text-white">E-mail</span>
                         </label>
                         <input type="email"
                             {...register("email", { required: "Email Address is required" })}
@@ -96,7 +96,7 @@ const Login = () => {
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Password</span>
+                            <span className="label-text text-white">Password</span>
                         </label>
                         <input type="password"
                             placeholder="*******"
@@ -108,21 +108,21 @@ const Login = () => {
                             })} />
                         {errors.password && <p className='text-red-400' role="alert">{errors.password?.message}</p>}
                         <label className="label">
-                            <span className="label-text">Forget Password</span>
+                            <span className="label-text text-white">Forget Password</span>
                         </label>
                     </div>
-                    <input className='btn btn-accent w-full' value='Login' type="submit" />
+                    <input className='btn bg-amber-500 hover:bg-amber-400 w-full' value='Login' type="submit" />
                     <div>
                         {loginError && <p className='text-red-400'>{loginError}</p>}
                     </div>
                 </form>
-                <p className='text-center mt-3'>New to Truck Bazar ?
-                    <span className='text-secondary ml-2 underline block lg:inline'>
+                <p className='text-center text-white mt-3'>New to Truck Bazar ?
+                    <span className='text-yellow-300  ml-2 underline block lg:inline'>
                         <Link to='/register'>Create new account</Link>
                     </span>
                 </p>
-                <div className="divider">OR</div>
-                <button onClick={handleGoogleSignIn} className='btn btn-outline  w-full'>CONTINUE WITH GOOGLE</button>
+                <div className="divider bg-white rounded-2xl">OR</div>
+                <button onClick={handleGoogleSignIn} className='btn btn-warning btn-outline  w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </section>
     );

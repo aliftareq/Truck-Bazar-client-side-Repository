@@ -23,7 +23,7 @@ const NavBar = () => {
     }
     return (
         <section>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-gray-900">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -89,7 +89,7 @@ const NavBar = () => {
                     </div>
                     <Link className="btn btn-ghost normal-case text-xl">daisyUI</Link>
                 </div>
-                <div className="navbar-end hidden lg:flex">
+                <div className="navbar-end hidden lg:flex text-white">
                     <ul className="menu menu-horizontal p-0">
                         <li><Link to='/'>Home</Link></li>
                         <li tabIndex={0}>
