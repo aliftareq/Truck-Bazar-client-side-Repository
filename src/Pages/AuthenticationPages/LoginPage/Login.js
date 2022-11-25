@@ -80,7 +80,7 @@ const Login = () => {
     }
     return (
         <section className='flex justify-center items-center'>
-            <div className='w-64 lg:w-2/5 shadow-lg px-5 lg:px-10 py-5 rounded-lg my-10 bg-slate-900'>
+            <div className='w-72 lg:w-2/5 shadow-lg px-5 lg:px-10 py-5 rounded-lg my-10 bg-slate-900'>
                 <h1 className='text-4xl text-center text-white'>Login</h1>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full">
