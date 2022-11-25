@@ -2,9 +2,9 @@ import React from 'react';
 
 const Blog = () => {
     return (
-        <section className="bg-gray-800 text-gray-100 p-10 rounded m-10">
+        <section className="bg-gray-800 text-gray-100 px-3 py-4 lg:p-10 rounded mx-3 my-4 lg:m-10">
             <div className="container flex flex-col justify-center p-4 mx-auto md:p-8">
-                <h2 className="mb-12 text-4xl font-bold leading-none text-amber-300 text-center sm:text-5xl">Some Important Questions About React</h2>
+                <h2 className="mb-5 lg:mb-12 text-sm lg:text-4xl font-bold leading-none text-amber-300 text-center">Some Important Questions About React</h2>
                 <div className="flex flex-col divide-y sm:px-8 lg:px-12 xl:px-32 divide-gray-700">
                     <details>
                         <summary className="py-2 outline-none cursor-pointer focus:underline">What are the different ways to manage a state in a React application?</summary>
@@ -35,7 +35,7 @@ const Blog = () => {
                     </details>
                     <details>
                         <summary className="py-2 outline-none cursor-pointer focus:underline">React vs. Angular vs. Vue?</summary>
-                        <div className="px-4 pb-4 space-y-2">
+                        <div className="px-4 pb-4 space-y-2 overflow-x-auto">
                             <table className="min-w-full text-xs">
                                 <thead className="dark:bg-gray-700">
                                     <tr className="text-left">
