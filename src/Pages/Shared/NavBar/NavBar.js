@@ -23,8 +23,8 @@ const NavBar = () => {
             })
     }
     return (
-        <section>
-            <div className="navbar bg-gray-900 lg:px-8">
+        <section className='sticky top-0 z-50'>
+            <div className="navbar bg-black lg:px-8">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -73,50 +73,50 @@ const NavBar = () => {
                                 user && user?.uid
                                     ?
                                     <li onClick={handleLogOut}>
-                                        <p className="btn bg-indigo-500 hover:bg-indigo-700 border-none">Logout</p>
+                                        <p className="btn bg-orange-400 hover:bg-orange-500 border-none">Logout</p>
 
                                     </li>
                                     :
                                     <Link to='/register'>
                                         <li>
-                                            <p className="btn bg-indigo-500 hover:bg-indigo-700 border-none">Register</p>
+                                            <p className="btn bg-orange-400 hover:bg-orange-500 border-none">Register</p>
                                         </li>
                                     </Link>
 
                             }
-
-
                         </ul>
                     </div>
                     <div className='flex items-center'>
                         <Link to='/' className="text-white text-xl font-bold">
-                            <img className='w-16 rounded-md' src={logo} alt="" />
+                            <img className='w-10 lg:w-16 rounded-md' src={logo} alt="" />
                         </Link>
                         <Link to='/' >
-                            <p className="text-white text-sm lg:text-xl font-bold ml-3">Truck Bazar</p>
+                            <p className="text-white text-xl lg:text-3xl font-bold ml-3">
+                                <i><span className='text-orange-500'>Truck</span>Bazar</i>
+                            </p>
                         </Link>
                     </div>
                 </div>
                 <div className="navbar-end hidden lg:flex text-white">
                     <ul className="menu menu-horizontal p-0">
-                        <li><Link to='/'>Home</Link></li>
-                        <li tabIndex={0}>
+                        <li className='hover:text-orange-500'><Link to='/'>Home</Link></li>
+                        <li className='hover:text-orange-500' tabIndex={0}>
                             <Link>
                                 Categories
                                 <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
                             </Link>
                             <ul className="p-2 bg-indigo-50 rounded">
-                                <li className='text-black'><Link>Pick-Up/Van</Link></li>
-                                <li className='text-black'><Link>Trucks</Link></li>
-                                <li className='text-black'><Link>Trailor</Link></li>
+                                <li className='text-black hover:text-orange-500'><Link>Pick-Up/Van</Link></li>
+                                <li className='text-black hover:text-orange-500'><Link>Trucks</Link></li>
+                                <li className='text-black hover:text-orange-500'><Link>Trailor</Link></li>
                             </ul>
                         </li>
-                        <li><Link to='/blog'>Blog</Link></li>
+                        <li className='hover:text-orange-500'><Link to='/blog'>Blog</Link></li>
                         {
                             user && user?.uid
-                                ? <li><Link>Dashboard</Link></li>
+                                ? <li className='hover:text-orange-500'><Link>Dashboard</Link></li>
                                 :
-                                <li><Link to='/login'>Login</Link></li>
+                                <li className='hover:text-orange-500'><Link to='/login'>Login</Link></li>
                         }
 
                     </ul>
@@ -130,10 +130,10 @@ const NavBar = () => {
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li>
+                                    <li className='hover:text-orange-500'>
                                         <Link>Profile</Link>
                                     </li>
-                                    <li><Link>My Products</Link></li>
+                                    <li className='hover:text-orange-500'><Link>My Products</Link></li>
                                 </ul>
                             </div>
                             : <></>
@@ -142,16 +142,14 @@ const NavBar = () => {
                     {
                         user && user?.uid
                             ?
-                            <div onClick={handleLogOut} className="btn">
+                            <div onClick={handleLogOut} className="btn bg-orange-400 hover:bg-orange-500">
                                 <p>Logout</p>
                             </div>
                             :
                             <Link to='/register'>
-                                <div className="btn bg-indigo-500 hover:bg-indigo-700">Register</div>
+                                <div className="btn bg-orange-400 hover:bg-orange-500">Register</div>
                             </Link>
                     }
-
-
                 </div>
             </div>
         </section>
