@@ -43,7 +43,7 @@ const NavBar = () => {
                                     <li className='text-black'><Link>trailor </Link></li>
                                 </ul>
                             </li>
-                            <li><Link>Blog</Link></li>
+                            <li><Link to='/blog'>Blog</Link></li>
                             {
                                 user && user?.uid
                                     ?
@@ -111,7 +111,7 @@ const NavBar = () => {
                                 <li className='text-black'><Link>Trailor</Link></li>
                             </ul>
                         </li>
-                        <li><Link>Blog</Link></li>
+                        <li><Link to='/blog'>Blog</Link></li>
                         {
                             user && user?.uid
                                 ? <li><Link>Dashboard</Link></li>
