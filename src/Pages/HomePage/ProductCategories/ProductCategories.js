@@ -5,7 +5,7 @@ import trailor from '../../../Assets/truck-Images/trailor.png'
 
 const ProductCategories = () => {
     return (
-        <section className='bg-gray-600 py-5'>
+        <section className='bg-zinc-800 py-5'>
             <div className='my-5'>
                 <p className='text-center px-10 text-lg lg:text-3xl text-white font-semibold'>Find the perfect used truck for you here</p>
             </div>

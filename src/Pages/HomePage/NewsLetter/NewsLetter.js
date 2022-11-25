@@ -12,10 +12,10 @@ const NewsLetter = () => {
                     </div>
                     <div className='my-5'>
                         <h3 className='font-bold'>TruckLetter</h3>
-                        <p>News from TruckStore – register now and stay informed.</p>
+                        <p>News from TruckBazar – register now and stay informed.</p>
                     </div>
                     <div className='my-5'>
-                        <button className='btn bg-orange-500 hover:bg-orange-600 border-none'>Subscribe To TruckLetter →</button>
+                        <button className='btn bg-orange-500 hover:bg-orange-600 border-none'>Subscribe To Truck-Letter →</button>
                     </div>
                 </div>
             </div>

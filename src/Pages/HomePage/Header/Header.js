@@ -9,8 +9,8 @@ import pic4 from '../../../Assets/images/slider-image-4.jpg'
 
 const Header = () => {
     return (
-        <section className='BgImg border border-black'>
-            <Carousel className='mx-10' autoPlay infiniteLoop>
+        <section className='bg-black border border-black'>
+            <Carousel className='mx-10 lg:mx-24' autoPlay infiniteLoop>
                 <div>
                     <img src={pic4} alt='pic1' />
                     <p className="legend hidden lg:block">Welcome</p>
