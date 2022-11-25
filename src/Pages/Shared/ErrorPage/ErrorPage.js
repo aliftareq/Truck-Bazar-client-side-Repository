@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
     return (
@@ -14,8 +15,8 @@ const ErrorPage = () => {
                     This page has not been found. <br />
                     please explore from home page.
                 </p>
-                {/* <p className="text-xl text-red-500">{error.statusText || error.message}</p>
-                <Link to='/' className="px-8 py-3 font-semibold rounded bg-violet-400 text-gray-900">Back to homepage</Link> */}
+                {/* <p className="text-xl text-red-500">{error.statusText || error.message}</p> */}
+                <Link to='/' className="px-8 py-3 font-semibold rounded bg-violet-400 text-gray-900">Back to homepage</Link>
             </div>
         </section>
     );
