@@ -1,9 +1,8 @@
 import React from 'react';
 import { BsFillPatchCheckFill } from "react-icons/bs";
-import BookingModal from '../BookingModal/BookingModal';
 
 const SingelProduct = ({ product, setProduct }) => {
-    const { _id, CategoryName, Year_of_Purchase, condition_Type, description, img, location, mobile_number, name, original_Price, resale_Price, seller_name, seller_verification, time_of_post, year_of_use } = product
+    const { Year_of_Purchase, condition_Type, description, img, location, mobile_number, name, original_Price, resale_Price, seller_name, seller_verification, time_of_post, year_of_use } = product
     return (
         <section>
             <div className="bg-white text-black my-10
