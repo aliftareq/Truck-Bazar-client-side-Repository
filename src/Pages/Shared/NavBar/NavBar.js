@@ -38,9 +38,15 @@ const NavBar = () => {
                                     <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
                                 </Link>
                                 <ul className="p-2 bg-indigo-50 rounded">
-                                    <li className='text-black'><Link>pickup/van </Link></li>
-                                    <li className='text-black'><Link>trucks </Link></li>
-                                    <li className='text-black'><Link>trailor </Link></li>
+                                    <li className='text-black'>
+                                        <Link to='/category/pick-up'>pickup/van </Link>
+                                    </li>
+                                    <li className='text-black'>
+                                        <Link to='/category/trucks&cover-van'>trucks </Link>
+                                    </li>
+                                    <li className='text-black'>
+                                        <Link to='/category/trailer-truck'>trailor </Link>
+                                    </li>
                                 </ul>
                             </li>
                             <li><Link to='/blog'>Blog</Link></li>

@@ -13,7 +13,7 @@ const ProductCategories = () => {
             <div className='flex justify-center items-center'>
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-4'>
                     <Link to='/category/pick-up'>
-                        <div className="card w-64 lg:w-96 bg-orange-500 hover:bg-white text-white hover:text-black shadow-xl flex justify-center items-center">
+                        <div className="card w-64 lg:w-96 bg-orange-500 hover:bg-white text-white hover:text-black hover:-mt-5 shadow-xl flex justify-center items-center">
                             <div className="card-body">
                                 <img className='w-60' src={pickup} alt="" />
                                 <p className='text-center text-lg font-extrabold'>PickUp</p>
@@ -21,7 +21,7 @@ const ProductCategories = () => {
                         </div>
                     </Link>
                     <Link to='/category/trucks&cover-van'>
-                        <div className="card w-64 lg:w-96 bg-orange-500 hover:bg-white text-white hover:text-black shadow-xl flex justify-center items-center">
+                        <div className="card w-64 lg:w-96 bg-orange-500 hover:bg-white text-white hover:text-black hover:-mt-5 shadow-xl flex justify-center items-center">
                             <div className="card-body">
                                 <img className='w-60' src={truck} alt="" />
                                 <p className='text-center text-lg font-extrabold'>Trucks /Cover-Van</p>
@@ -29,7 +29,7 @@ const ProductCategories = () => {
                         </div>
                     </Link>
                     <Link to='/category/trailer-truck'>
-                        <div className="card w-64 lg:w-96 bg-orange-500 hover:bg-white text-white hover:text-black shadow-xl flex justify-center items-center">
+                        <div className="card w-64 lg:w-96 bg-orange-500 hover:bg-white text-white hover:text-black hover:-mt-5 shadow-xl flex justify-center items-center">
                             <div className="card-body">
                                 <img className='w-60' src={trailor} alt="" />
                                 <p className='text-center text-lg font-extrabold'>Trailor</p>
