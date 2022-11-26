@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -21,9 +21,9 @@ const Login = () => {
     const from = location?.state?.from?.pathname || '/'
 
     //navigate
-    if (token) {
-        navigate(from, { replace: true })
-    }
+    // if (token) {
+    //     navigate(from, { replace: true })
+    // }
 
     //react form hook
     const { register, formState: { errors }, handleSubmit } = useForm()
@@ -38,6 +38,7 @@ const Login = () => {
                 console.log(user);
                 setLoginUserEmail(data.email)
                 setloginError('')
+                // navigate(from, { replace: true })
                 toast.success('Successfully logged in')
 
             })
@@ -78,6 +79,12 @@ const Login = () => {
                 toast.error(err.message)
             })
     }
+    useEffect(() => {
+        //navigate
+        if (token) {
+            navigate(from, { replace: true })
+        }
+    }, [token, from, navigate])
     return (
         <section className='flex justify-center items-center'>
             <div className='w-72 lg:w-2/5 shadow-lg px-5 lg:px-10 py-5 rounded-lg my-10 bg-slate-900'>
