@@ -126,9 +126,13 @@ const NavBar = () => {
                         <li className='hover:text-orange-500'><Link to='/blog'>Blog</Link></li>
                         {
                             user && user?.uid
-                                ? <li className='hover:text-orange-500'><Link>Dashboard</Link></li>
+                                ? <li className='hover:text-orange-500'>
+                                    <Link to='/dashboard'>Dashboard</Link>
+                                </li>
                                 :
-                                <li className='hover:text-orange-500'><Link to='/login'>Login</Link></li>
+                                <li className='hover:text-orange-500'>
+                                    <Link to='/login'>Login</Link>
+                                </li>
                         }
 
                     </ul>

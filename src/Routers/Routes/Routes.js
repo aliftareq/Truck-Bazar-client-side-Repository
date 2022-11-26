@@ -1,3 +1,4 @@
+import DashBoardLayout from "../../Layout/DashBoardLayout";
 import Main from "../../Layout/Main";
 import Login from "../../Pages/AuthenticationPages/LoginPage/Login";
 import Register from "../../Pages/AuthenticationPages/RegisterPage/Register";
@@ -45,5 +46,33 @@ export const router = createBrowserRouter([
             }
         ]
 
+    },
+    {
+        path: '/dashboard',
+        errorElement: <ErrorPage></ErrorPage>,
+        element: <PrivateRoutes><DashBoardLayout></DashBoardLayout></PrivateRoutes>,
+        // children: [
+        //     {
+        //         path: '/dashboard',
+        //         element: <MyAppointments></MyAppointments>
+        //     },
+        //     {
+        //         path: '/dashboard/payment/:id',
+        //         loader: ({ params }) => fetch(`https://doctors-portal-server-lyart-eight.vercel.app/booking/${params.id}`),
+        //         element: <Payment></Payment>
+        //     },
+        //     {
+        //         path: '/dashboard/users',
+        //         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+        //     },
+        //     {
+        //         path: '/dashboard/add-doctor',
+        //         element: <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
+        //     },
+        //     {
+        //         path: '/dashboard/manage-doctors',
+        //         element: <AdminRoute><ManageDoctors></ManageDoctors></AdminRoute>
+        //     },
+        // ]
     }
 ])
