@@ -3,15 +3,19 @@ import Main from "../../Layout/Main";
 import Login from "../../Pages/AuthenticationPages/LoginPage/Login";
 import Register from "../../Pages/AuthenticationPages/RegisterPage/Register";
 import Blog from "../../Pages/BlogPage/Blog/Blog";
+import AddProducts from "../../Pages/DashBoardPage/AddProducts/AddProducts";
 import Alladmin from "../../Pages/DashBoardPage/Alladmin/Alladmin";
 import AllBuyers from "../../Pages/DashBoardPage/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/DashBoardPage/AllSellers/AllSellers";
+import MyBuyers from "../../Pages/DashBoardPage/MyBuyers/MyBuyers";
+import MyProducts from "../../Pages/DashBoardPage/MyProducts/MyProducts";
 import ReportedItems from "../../Pages/DashBoardPage/ReportedItems/ReportedItems";
 import Home from "../../Pages/HomePage/Home/Home";
 import CategoryProducts from "../../Pages/HomePage/ProductCategories/CategoryProducts/CategoryProducts";
 import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -67,7 +71,19 @@ export const router = createBrowserRouter([
             //     element: <Payment></Payment>
             // },
             {
-                path: '/dashboard',
+                path: '/dashboard/myproducts',
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+            },
+            {
+                path: '/dashboard/add-products',
+                element: <SellerRoute><AddProducts></AddProducts></SellerRoute>
+            },
+            {
+                path: '/dashboard/my-buyers',
+                element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
+            },
+            {
+                path: '/dashboard/all-sellers',
                 element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
@@ -78,10 +94,6 @@ export const router = createBrowserRouter([
                 path: '/dashboard/all-admin',
                 element: <AdminRoute><Alladmin></Alladmin></AdminRoute>
             },
-            // {
-            //     path: '/dashboard/add-doctor',
-            //     element: <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
-            // },
             {
                 path: '/dashboard/reported-items',
                 element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>

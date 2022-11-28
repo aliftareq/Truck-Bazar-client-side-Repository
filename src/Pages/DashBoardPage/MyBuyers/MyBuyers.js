@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
-const MyAppointments = () => {
+const MyBuyers = () => {
     //context values
     const { user } = useContext(AuthContext)
 
@@ -11,9 +11,9 @@ const MyAppointments = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(`https://doctors-portal-server-lyart-eight.vercel.app/bookings?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/bookings`, {
                 headers: {
-                    authorization: `bearer ${localStorage.getItem('patient-token')}`
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
             })
             const data = await res.json()
@@ -23,7 +23,7 @@ const MyAppointments = () => {
     return (
         <section className='px-10'>
             <div>
-                <h1 className='text-3xl'>My Appointments</h1>
+                <h1 className='text-3xl'>My Buyers</h1>
             </div>
             <div className="overflow-x-auto mt-5">
                 <table className="table w-full">
@@ -68,4 +68,4 @@ const MyAppointments = () => {
     );
 };
 
-export default MyAppointments;
+export default MyBuyers;
