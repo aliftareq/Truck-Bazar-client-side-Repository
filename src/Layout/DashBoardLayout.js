@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Contexts/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
 import useBuyer from '../Hooks/useBuyer';
@@ -11,6 +11,10 @@ const DashBoardLayout = () => {
     const [isAdmin] = useAdmin(user?.email)
     const [isSeller] = useSeller(user?.email)
     const [isBuyer] = useBuyer(user?.email)
+
+    let activeStyle = {
+        backgroundColor: "green",
+    }
     return (
         <div>
             <NavBar></NavBar>
@@ -24,22 +28,55 @@ const DashBoardLayout = () => {
                     <ul className="menu p-4 w-64 bg-base-100 lg:bg-transparent text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         {
-                            isBuyer && <li><Link to='/dashboard'>My orders</Link></li>
+                            isBuyer && <li><NavLink to='/dashboard'>My orders</NavLink></li>
                         }
                         {
                             isSeller &&
                             <>
-                                <li><Link to='/dashboard/users'>Add A product</Link></li>
-                                <li><Link to='/dashboard/add-doctor'> My Products</Link></li>
-                                <li><Link to='/dashboard/manage-doctors'>My buyers</Link></li>
+                                <li><NavLink to='/dashboard/users'>Add A product</NavLink></li>
+                                <li><NavLink to='/dashboard/add-doctor'> My Products</NavLink></li>
+                                <li><NavLink to='/dashboard/manage-doctors'>My buyers</NavLink></li>
                             </>
                         }
                         {
                             isAdmin &&
                             <>
-                                <li><Link to='/dashboard/users'>All Sellers</Link></li>
-                                <li><Link to='/dashboard/add-doctor'> All Buyers</Link></li>
-                                <li><Link to='/dashboard/manage-doctors'>Reported Items</Link></li>
+                                <li>
+                                    <NavLink to='/dashboard'
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }
+                                    >
+                                        All Sellers
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/all-buyers'
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }
+                                    >
+                                        All Buyers
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/all-admin'
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }
+                                    >
+                                        All Admins
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/dashboard/reported-items'
+                                        style={({ isActive }) =>
+                                            isActive ? activeStyle : undefined
+                                        }
+                                    >
+                                        Reported Items
+                                    </NavLink>
+                                </li>
                             </>
                         }
                     </ul>
