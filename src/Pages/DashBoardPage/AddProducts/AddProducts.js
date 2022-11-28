@@ -29,8 +29,7 @@ const AddProducts = () => {
 
     //handlers 
     const handleAddProduct = data => {
-        //console.log(data);
-        // console.log(data.image[0]);
+
         const image = data.image[0]
         const formData = new FormData();
         formData.append('image', image)
@@ -47,7 +46,6 @@ const AddProducts = () => {
         })
             .then(res => res.json())
             .then(imgdata => {
-                // console.log(imgdata)
                 if (imgdata.success) {
                     //console.log(imgdata.data.url);
                     const product = {
@@ -78,12 +76,13 @@ const AddProducts = () => {
                         body: JSON.stringify(product)
                     })
                         .then(res => res.json())
-                        .then(data => {
-                            console.log(data);
-                            if (data.insertedId) {
+                        .then(addproductData => {
+                            console.log(addproductData);
+                            if (addproductData.insertedId) {
                                 toast.success('Product data added successfully')
                                 navigate(`/category/${data.category}`)
                             }
+
                         })
                 }
             })

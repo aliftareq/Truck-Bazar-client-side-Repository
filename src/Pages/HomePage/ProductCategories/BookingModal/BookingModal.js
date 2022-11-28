@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 const BookingModal = ({ product, setProduct }) => {
-    const { _id, name, resale_Price, seller_name } = product
+    const { _id, name, resale_Price, seller_name, seller_email } = product
 
     //context values
     const { user } = useContext(AuthContext)
@@ -26,6 +26,7 @@ const BookingModal = ({ product, setProduct }) => {
         const product_id = _id
         const product_price = resale_Price
         const product_owner = seller_name
+        const product_owner_email = seller_email
         const booking_date = currentdate
 
         const booking = {
@@ -37,6 +38,7 @@ const BookingModal = ({ product, setProduct }) => {
             product_id,
             product_price,
             product_owner,
+            product_owner_email,
             booking_date,
         }
         // console.log(date, name, email, phone, slot);

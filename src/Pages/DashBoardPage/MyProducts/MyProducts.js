@@ -1,25 +1,68 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider';
+import LoadingSpinner from '../../Shared/LoadingSpinner/LoadingSpinner';
 
 const MyProducts = () => {
     //context values
     const { user } = useContext(AuthContext)
 
     //use of query 
-    const { data: bookings = [] } = useQuery({
+    const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings`, {
+            const res = await fetch(`http://localhost:5000/myproducts?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
             })
             const data = await res.json()
+            console.log(data);
             return data;
         }
     })
+
+    //handlers
+
+    //1. for deleting product
+    const handledeleteUser = id => {
+        fetch(`http://localhost:5000/deleteproduct/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('user-token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount > 0) {
+                    toast.warn('Remove From database Successfully')
+                }
+                refetch()
+            })
+    }
+    //2. for updating advertise
+    const handleadvertise = id => {
+        fetch(`http://localhost:5000/product/advertise/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('user-token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    toast.success('product added to advertise section')
+                }
+                refetch()
+            })
+    }
+
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>
+    }
     return (
         <section className='px-10'>
             <div>
@@ -39,26 +82,37 @@ const MyProducts = () => {
                     </thead>
                     <tbody>
                         {
-                            bookings?.map((booking, idx) =>
+                            products?.map((product, idx) =>
                                 <tr key={idx}>
                                     <th>{idx + 1}</th>
-                                    <td>{booking.Patientname}</td>
-                                    <td>{booking.Treatment}</td>
-                                    <td>{booking.appointmentDate}</td>
-                                    <td>{booking.slot}</td>
+                                    <td>{product.name}</td>
                                     <td>
-                                        {
-                                            booking.price && !booking.paid &&
-                                            <Link to={`/dashboard/payment/${booking._id}`}>
-                                                <button className='btn btn-primary btn-sm'>Pay</button>
-                                            </Link>
-                                        }
-                                        {
-                                            booking.price && booking.paid &&
-                                            <span className='text-green-400'>Paid</span>
+                                        {product?.sell_status
+                                            ? 'Sold'
+                                            : 'Available'
                                         }
                                     </td>
-                                </tr>)
+                                    <td>{product.resale_Price}</td>
+                                    <td>
+                                        {product.advertise
+                                            ?
+                                            <button className='btn btn-xs btn-primary' disabled>
+                                                Advertise
+                                            </button>
+                                            :
+                                            <button onClick={() => handleadvertise(product._id)} className='btn btn-xs btn-primary'>
+                                                Advertise
+                                            </button>
+
+                                        }
+                                    </td>
+                                    <td>
+                                        <button onClick={() => handledeleteUser(product._id)} className='btn btn-xs btn-error'>
+                                            delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            )
                         }
                     </tbody>
                 </table>
