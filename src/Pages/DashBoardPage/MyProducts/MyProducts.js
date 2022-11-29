@@ -56,6 +56,9 @@ const MyProducts = () => {
                 if (data.modifiedCount > 0) {
                     toast.success('product added to advertise section')
                 }
+                else {
+                    toast.info('already added in advertise section')
+                }
                 refetch()
             })
     }
@@ -66,57 +69,66 @@ const MyProducts = () => {
     return (
         <section className='px-10'>
             <div>
-                <h1 className='text-3xl'>My Products</h1>
+                <h1 className='text-3xl mt-3'>My Products</h1>
             </div>
-            <div className="overflow-x-auto mt-5">
-                <table className="table w-full">
-                    <thead>
-                        <tr>
-                            <th>SL No.</th>
-                            <th>Name</th>
-                            <th>Sale Status</th>
-                            <th>Price</th>
-                            <th>Action-1</th>
-                            <th>Action-2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            products?.map((product, idx) =>
-                                <tr key={idx}>
-                                    <th>{idx + 1}</th>
-                                    <td>{product.name}</td>
-                                    <td>
-                                        {product?.sell_status
-                                            ? 'Sold'
-                                            : 'Available'
-                                        }
-                                    </td>
-                                    <td>{product.resale_Price}</td>
-                                    <td>
-                                        {product.advertise
-                                            ?
-                                            <button className='btn btn-xs btn-primary' disabled>
-                                                Advertise
-                                            </button>
-                                            :
-                                            <button onClick={() => handleadvertise(product._id)} className='btn btn-xs btn-primary'>
-                                                Advertise
-                                            </button>
-
-                                        }
-                                    </td>
-                                    <td>
-                                        <button onClick={() => handledeleteUser(product._id)} className='btn btn-xs btn-error'>
-                                            delete
-                                        </button>
-                                    </td>
+            {
+                products?.length === 0
+                    ?
+                    <p className='text-xl lg:text-4xl text-center text-yellow-400 mt-4'>
+                        You have Not Added any Products Yet.
+                    </p>
+                    :
+                    <div className="overflow-x-auto mt-5">
+                        <table className="table w-full">
+                            <thead>
+                                <tr>
+                                    <th>SL No.</th>
+                                    <th>Name</th>
+                                    <th>Sale Status</th>
+                                    <th>Price</th>
+                                    <th>Action-1</th>
+                                    <th>Action-2</th>
                                 </tr>
-                            )
-                        }
-                    </tbody>
-                </table>
-            </div>
+                            </thead>
+                            <tbody>
+                                {
+                                    products?.map((product, idx) =>
+                                        <tr key={idx}>
+                                            <th>{idx + 1}</th>
+                                            <td>{product.name}</td>
+                                            <td>
+                                                {product?.paid
+                                                    ? 'Sold'
+                                                    : 'Available'
+                                                }
+                                            </td>
+                                            <td>{product.resale_Price}</td>
+                                            <td>
+                                                {product.paid
+                                                    ?
+                                                    <button className='btn btn-xs btn-primary' disabled>
+                                                        Advertise
+                                                    </button>
+                                                    :
+                                                    <button onClick={() => handleadvertise(product._id)} className='btn btn-xs btn-primary'>
+                                                        Advertise
+                                                    </button>
+
+                                                }
+                                            </td>
+                                            <td>
+                                                <button onClick={() => handledeleteUser(product._id)} className='btn btn-xs btn-error'>
+                                                    delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+            }
+
 
         </section>
     );

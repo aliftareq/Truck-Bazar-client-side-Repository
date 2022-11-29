@@ -7,6 +7,7 @@ import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const AddProducts = () => {
     const [currentUser, setCurrentUser] = useState({})
+    const [extraError, setExtraError] = useState('')
 
     //context value 
     const { user } = useContext(AuthContext)
@@ -33,6 +34,19 @@ const AddProducts = () => {
         const image = data.image[0]
         const formData = new FormData();
         formData.append('image', image)
+
+
+
+        //verification 
+        if ((data.resalePrice.includes(','))) {
+            setExtraError("resale Price should be a number, don't use comma or any special character")
+            return;
+        }
+
+        if (parseInt(data.resalePrice) >= 1000000) {
+            setExtraError("Price can't be higher than 1000000 to avoid payment error isssue.")
+            return;
+        }
 
 
 
@@ -160,6 +174,9 @@ const AddProducts = () => {
                                     })}
                                 />
                                 {errors.resalePrice && <p className='text-red-400' role="alert">{errors.resalePrice?.message}</p>}
+                                {extraError &&
+                                    <p className='text-red-400' role="alert">{extraError}</p>
+                                }
                             </div>
                             <div className="col-span-full sm:col-span-2">
                                 <label htmlFor="state" className="text-sm">Original Price</label>
@@ -230,64 +247,6 @@ const AddProducts = () => {
                     </fieldset>
                 </form>
             </section>
-            {/* <form onSubmit={handleSubmit(handleAddDoctor)}>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Name</span>
-                        </label>
-                        <input type="text"
-                            placeholder="Jhankar Mahabub"
-                            className="input input-bordered w-full"
-                            {...register("name", {
-                                required: 'Name is required'
-                            })}
-                        />
-                        {errors.name && <p className='text-red-400' role="alert">{errors.name?.message}</p>}
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">E-mail</span>
-                        </label>
-                        <input type="email"
-                            placeholder="example@gmail.com"
-                            className="input input-bordered w-full"
-                            {...register("email", {
-                                required: 'Email is required'
-                            })}
-                        />
-                        {errors.email && <p className='text-red-400' role="alert">{errors.email?.message}</p>}
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Speciality</span>
-                        </label>
-                        <select className="select select-primary w-full"
-                            {...register("speciality", {
-                                required: 'speciality option is required'
-                            })}
-                        >
-                            <option disabled selected>Please Select a Specialty</option>
-                            {
-                                specialtyOptions?.map(option => <option
-                                    key={option._id}
-                                    value={option.name}
-                                >{option.name}</option>)
-                            }
-                        </select>
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Image</span>
-                        </label>
-                        <input type="file"
-                            className="file-input file-input-bordered w-full max-w-xs"
-                            {...register("image", {
-                                required: 'image is required'
-                            })} />
-                        {errors.img && <p className='text-red-400' role="alert">{errors.img?.message}</p>}
-                    </div>
-                    <input className='btn btn-accent w-full mt-4' value='Add To List' type="submit" />
-                </form> */}
         </section>
     );
 };

@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 const CheckOutForm = ({ booking }) => {
     //states
@@ -14,24 +15,25 @@ const CheckOutForm = ({ booking }) => {
     const elements = useElements();
 
     //booking data
-    const { price, email, Patientname, _id } = booking;
+    const { product_price, buyer_email, buyer_Name, _id, product_id } = booking;
+
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://doctors-portal-server-lyart-eight.vercel.app/create-payment-intent", {
+        fetch("http://localhost:5000/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-Type": "application/json",
-                authorization: `bearer ${localStorage.getItem('patient-token')}`
+                authorization: `bearer ${localStorage.getItem('user-token')}`
             },
-            body: JSON.stringify({ price }),
+            body: JSON.stringify({ product_price }),
         })
             .then((res) => res.json())
             .then((data) => {
                 //console.log(data.clientSecret);
                 setClientSecret(data.clientSecret)
             });
-    }, [price]);
+    }, [product_price]);
 
     //handlers
     const handleSubmit = async (event) => {
@@ -76,8 +78,8 @@ const CheckOutForm = ({ booking }) => {
                 payment_method: {
                     card: card,
                     billing_details: {
-                        name: Patientname,
-                        email: email
+                        name: buyer_Name,
+                        email: buyer_email
                     },
                 },
             },
@@ -91,18 +93,19 @@ const CheckOutForm = ({ booking }) => {
         if (paymentIntent.status === "succeeded") {
             console.log('card Info', card);
             const payment = {
-                price,
+                product_price,
                 transactionId: paymentIntent.id,
-                email,
-                bookingId: _id
+                buyer_email,
+                bookingId: _id,
+                product_id
             }
 
             //store Payment info in database
-            fetch('https://doctors-portal-server-lyart-eight.vercel.app/payments', {
+            fetch('http://localhost:5000/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    authorization: `bearer ${localStorage.getItem('patient-token')}`
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
                 },
                 body: JSON.stringify(payment)
             })
@@ -110,8 +113,9 @@ const CheckOutForm = ({ booking }) => {
                 .then(data => {
                     console.log(data);
                     if (data.insertedId) {
-                        setSuccess('Congrats! Your Payment completed')
+                        setSuccess('Congrats! Your Payment completed.')
                         setTransactionId(paymentIntent.id)
+                        toast.success('Your Payment has been successfully Taken.')
                     }
                 })
         }

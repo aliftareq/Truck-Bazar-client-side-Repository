@@ -54,7 +54,7 @@ const NavBar = () => {
                                 user && user?.uid
                                     ?
                                     <>
-                                        <li><Link>DashBoard</Link></li>
+                                        <li><Link to='/dashboard'>DashBoard</Link></li>
                                         <li tabIndex={1}>
                                             <Link className="justify-between">
                                                 <div className="w-10 rounded-full">

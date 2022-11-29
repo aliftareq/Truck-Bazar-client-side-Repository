@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
 
 const BookingModal = ({ product, setProduct }) => {
-    const { _id, name, resale_Price, seller_name, seller_email } = product
+    const { _id, name, resale_Price, seller_name, seller_email, img } = product
 
     //context values
     const { user } = useContext(AuthContext)
@@ -23,6 +23,7 @@ const BookingModal = ({ product, setProduct }) => {
         const buyer_Name = user?.displayName
         const buyer_email = user?.email
         const product_name = name
+        const product_img = img
         const product_id = _id
         const product_price = resale_Price
         const product_owner = seller_name
@@ -35,6 +36,7 @@ const BookingModal = ({ product, setProduct }) => {
             buyer_Number,
             meeting_location,
             product_name,
+            product_img,
             product_id,
             product_price,
             product_owner,
@@ -57,7 +59,7 @@ const BookingModal = ({ product, setProduct }) => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    toast.success('Your appointment Booked Successfully')
+                    toast.success('Product Booked Successfully')
                 }
                 else {
                     toast.warn(data.message)

@@ -7,8 +7,11 @@ import AddProducts from "../../Pages/DashBoardPage/AddProducts/AddProducts";
 import Alladmin from "../../Pages/DashBoardPage/Alladmin/Alladmin";
 import AllBuyers from "../../Pages/DashBoardPage/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/DashBoardPage/AllSellers/AllSellers";
+import DashBoard from "../../Pages/DashBoardPage/DashBoard/DashBoard";
 import MyBuyers from "../../Pages/DashBoardPage/MyBuyers/MyBuyers";
+import MyOrders from "../../Pages/DashBoardPage/MyOrders/MyOrders";
 import MyProducts from "../../Pages/DashBoardPage/MyProducts/MyProducts";
+import Payment from "../../Pages/DashBoardPage/Payment/Payment";
 import ReportedItems from "../../Pages/DashBoardPage/ReportedItems/ReportedItems";
 import Home from "../../Pages/HomePage/Home/Home";
 import CategoryProducts from "../../Pages/HomePage/ProductCategories/CategoryProducts/CategoryProducts";
@@ -61,15 +64,19 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage></ErrorPage>,
         element: <PrivateRoutes><DashBoardLayout></DashBoardLayout></PrivateRoutes>,
         children: [
-            // {
-            //     path: '/dashboard',
-            //     element: <MyAppointments></MyAppointments>
-            // },
-            // {
-            //     path: '/dashboard/payment/:id',
-            //     loader: ({ params }) => fetch(`https://doctors-portal-server-lyart-eight.vercel.app/booking/${params.id}`),
-            //     element: <Payment></Payment>
-            // },
+            {
+                path: '/dashboard',
+                element: <DashBoard></DashBoard>
+            },
+            {
+                path: '/dashboard/myorders',
+                element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`),
+                element: <Payment></Payment>
+            },
             {
                 path: '/dashboard/myproducts',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>

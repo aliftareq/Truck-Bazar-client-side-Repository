@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import ConfirmationModal from '../../Shared/ConfirmationModal/ConfirmationModal';
 import LoadingSpinner from '../../Shared/LoadingSpinner/LoadingSpinner';
 
 const ReportedItems = () => {
@@ -87,17 +86,6 @@ const ReportedItems = () => {
                     </tbody>
                 </table>
             </div>
-            {
-                deletingDoctor &&
-                <ConfirmationModal
-                    title={`Are you sure about removing this Doctor?`}
-                    message={`Once you confirm the delete , you cant recovet the data.`}
-                    modalAction={handleDeleteDoctor}
-                    actionName={`Confirm`}
-                    modalData={deletingDoctor}
-                    closeModal={closeModal}
-                ></ConfirmationModal>
-            }
         </section>
     );
 };
