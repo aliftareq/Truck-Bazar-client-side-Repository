@@ -1,8 +1,29 @@
 import React from 'react';
 import { BsFillPatchCheckFill } from "react-icons/bs";
+import { toast } from 'react-toastify';
 
 const SingelProduct = ({ product, setProduct }) => {
     const { Year_of_Purchase, condition_Type, description, img, location, mobile_number, name, original_Price, resale_Price, seller_name, seller_verification, time_of_post, year_of_use } = product
+
+    //handlers
+    const handleRepoert = (id) => {
+        fetch(`http://localhost:5000/product/reportItems/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                authorization: `bearer ${localStorage.getItem('user-token')}`
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.info('This Product has been reported to admin')
+                }
+                else {
+                    toast.warn('This product has been reported by someone already.')
+                }
+            })
+    }
     return (
         <section>
             <div className="bg-white text-black my-10
@@ -42,7 +63,6 @@ const SingelProduct = ({ product, setProduct }) => {
                             <span className='font-semibold'>Seller Name </span> :
                             <span className='flex items-center ml-2'>{seller_name}{seller_verification ? <BsFillPatchCheckFill className='ml-2 text-blue-600' /> : ''}</span>
                         </p>
-
                     </div>
                     <div>
                         <p className='text-lg'>
@@ -59,7 +79,6 @@ const SingelProduct = ({ product, setProduct }) => {
                     </div>
                     <div className="card-actions">
                         <label
-                            // disabled={slots.length === 0}
                             onClick={() => setProduct(product)}
                             htmlFor="booking-modal"
                             className="btn bg-orange-500
@@ -68,6 +87,9 @@ const SingelProduct = ({ product, setProduct }) => {
                         >
                             Book This Product
                         </label>
+                        <button onClick={() => handleRepoert(product._id)} className='btn btn-error hover:bg-red-600'>
+                            Report this product
+                        </button>
                     </div>
                 </div>
             </div>

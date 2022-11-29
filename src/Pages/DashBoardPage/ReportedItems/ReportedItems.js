@@ -1,48 +1,49 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 import LoadingSpinner from '../../Shared/LoadingSpinner/LoadingSpinner';
 
 const ReportedItems = () => {
     //states
-    const [deletingDoctor, setDeletingDoctor] = useState(null)
 
     //loading doctors
-    // const { data: doctors, isLoading, refetch } = useQuery({
-    //     queryKey: ['doctors'],
-    //     queryFn: async () => {
-    //         const res = await fetch(`https://doctors-portal-server-lyart-eight.vercel.app/doctors`, {
-    //             headers: {
-    //                 authorization: `bearer ${localStorage.getItem('user-token')}`
-    //             }
-    //         })
-    //         const data = await res.json()
-    //         return data
-    //     }
-    // })
-    //handlers 
-    const closeModal = () => {
-        setDeletingDoctor(null)
-    }
-    const handleDeleteDoctor = (doctor) => {
-        fetch(`https://doctors-portal-server-lyart-eight.vercel.app/doctors/${doctor._id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('patient-token')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount) {
-                    toast.success(`Mr/Mrs ${doctor.name} has been removed from the list`)
-                    // refetch()
+    const { data: products, isLoading, refetch } = useQuery({
+        queryKey: ['doctors'],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/product/reportedItems`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
             })
+            const data = await res.json()
+            return data
+        }
+    })
+
+    //handlers 
+    const handleDeleteDoctor = (id, name) => {
+        const ans = window.confirm('Are you Sure about to delete this product?')
+        if (ans) {
+            fetch(`http://localhost:5000/deleteproduct/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('patient-token')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount) {
+                        toast.success(`${name} has been deleted from the product list`)
+                        refetch()
+                    }
+                })
+        }
+
     }
 
-    // if (isLoading) {
-    //     <LoadingSpinner></LoadingSpinner>
-    // }
+    if (isLoading) {
+        <LoadingSpinner></LoadingSpinner>
+    }
     return (
         <section className='px-10'>
             <div className='my-4'>
@@ -53,36 +54,31 @@ const ReportedItems = () => {
                     <thead>
                         <tr>
                             <th>SL No.</th>
-                            <th>avatar</th>
-                            <th>Name</th>
-                            <th>email</th>
+                            <th>Product Image</th>
+                            <th>Product Name</th>
+                            <th>Product owner</th>
                             <th>action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {
-                            doctors?.map((doctor, idx) =>
+                        {
+                            products?.map((product, idx) =>
                                 <tr key={idx}>
                                     <th>{idx + 1}</th>
                                     <th>
-                                        <div className="avatar">
-                                            <div className="w-12 rounded-full">
-                                                <img src={doctor.image} alt='doctorPic' />
-                                            </div>
-                                        </div>
+                                        <img className='w-16' src={product.img} alt='productPic' />
                                     </th>
-                                    <td>{doctor?.name}</td>
-                                    <td>{doctor?.email}</td>
+                                    <td>{product?.name}</td>
+                                    <td>{product?.seller_name}</td>
                                     <td>
-                                        <label
-                                            htmlFor="Confirmation-modal"
-                                            onClick={() => setDeletingDoctor(doctor)}
+                                        <button
+                                            onClick={() => handleDeleteDoctor(product._id, product.name)}
                                             className="btn btn-xs btn-error">
                                             delete
-                                        </label>
+                                        </button>
                                     </td>
                                 </tr>)
-                        } */}
+                        }
                     </tbody>
                 </table>
             </div>

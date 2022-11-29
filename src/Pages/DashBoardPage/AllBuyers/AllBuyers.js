@@ -42,20 +42,24 @@ const AllBuyers = () => {
 
     //2. for deleting user
     const handledeleteUser = id => {
-        fetch(`http://localhost:5000/users/delete/${id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('user-token')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.deletedCount > 0) {
-                    toast.warn('Removed from database and buyer list successfully')
+        const ans = window.confirm('Are you Sure about to delete this user?')
+        if (ans) {
+            fetch(`http://localhost:5000/users/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
-                refetch()
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        toast.warn('Removed from database and buyer list successfully')
+                    }
+                    refetch()
+                })
+        }
+
     }
     return (
         <section className='px-10'>

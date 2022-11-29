@@ -59,22 +59,26 @@ const AllSellers = () => {
             })
     }
 
-    //3. for making admin
+    //3. for delete from user list
     const handledeleteUser = id => {
-        fetch(`http://localhost:5000/users/delete/${id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('user-token')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.deletedCount > 0) {
-                    toast.warn('Remove From database Successfully')
+        const ans = window.confirm('Are you Sure about to delete this user?')
+        if (ans) {
+            fetch(`http://localhost:5000/users/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
-                refetch()
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        toast.warn('Remove From database Successfully')
+                    }
+                    refetch()
+                })
+        }
+
     }
     return (
         <section className='px-10'>

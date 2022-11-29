@@ -27,20 +27,24 @@ const MyProducts = () => {
 
     //1. for deleting product
     const handledeleteUser = id => {
-        fetch(`http://localhost:5000/deleteproduct/${id}`, {
-            method: 'DELETE',
-            headers: {
-                authorization: `bearer ${localStorage.getItem('user-token')}`
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.deletedCount > 0) {
-                    toast.warn('Remove From database Successfully')
+        const ans = window.confirm('Are you Sure about to delete this product?')
+        if (ans) {
+            fetch(`http://localhost:5000/deleteproduct/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
-                refetch()
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        toast.warn('Remove From database Successfully')
+                    }
+                    refetch()
+                })
+        }
+
     }
     //2. for updating advertise
     const handleadvertise = id => {
