@@ -48,7 +48,7 @@ const BookingModal = ({ product, setProduct }) => {
 
 
         //sending data to server
-        fetch(`http://localhost:5000/bookings`, {
+        fetch(`https://truckbazar-server-side.vercel.app/bookings`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -20,7 +20,7 @@ const CheckOutForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://truckbazar-server-side.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-Type": "application/json",
@@ -101,7 +101,7 @@ const CheckOutForm = ({ booking }) => {
             }
 
             //store Payment info in database
-            fetch('http://localhost:5000/payments', {
+            fetch('https://truckbazar-server-side.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

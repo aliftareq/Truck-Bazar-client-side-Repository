@@ -9,10 +9,10 @@ const MyOrders = () => {
     const { user } = useContext(AuthContext)
 
     //use of query 
-    const { data: bookings, isLoading, refetch } = useQuery({
+    const { data: bookings, isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bookings?email=${user?.email}`, {
+            const res = await fetch(`https://truckbazar-server-side.vercel.app/bookings?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('user-token')}`
                 }

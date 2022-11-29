@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 loader: ({ params }) =>
-                    fetch(`http://localhost:5000/category/${params.id}`,
+                    fetch(`https://truckbazar-server-side.vercel.app/category/${params.id}`,
                         {
                             headers: {
                                 authorization: `bearer ${localStorage.getItem('user-token')}`
@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/payment/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/booking/${params.id}`),
+                loader: ({ params }) => fetch(`https://truckbazar-server-side.vercel.app/booking/${params.id}`),
                 element: <Payment></Payment>
             },
             {

@@ -9,7 +9,11 @@ const Advertisement = () => {
     const [products, SetProducts] = useState([])
 
     //loading data 
-    axios.get(`http://localhost:5000/advertiseProducts`)
+    axios.get(`https://truckbazar-server-side.vercel.app/advertiseProducts`, {
+        headers: {
+            authorization: `bearer ${localStorage.getItem('user-token')}`
+        }
+    })
         .then(data => {
             //console.log(data.data)
             SetProducts(data.data)

@@ -10,7 +10,7 @@ const ReportedItems = () => {
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['doctors'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/product/reportedItems`, {
+            const res = await fetch(`https://truckbazar-server-side.vercel.app/product/reportedItems`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
@@ -24,7 +24,7 @@ const ReportedItems = () => {
     const handleDeleteDoctor = (id, name) => {
         const ans = window.confirm('Are you Sure about to delete this product?')
         if (ans) {
-            fetch(`http://localhost:5000/deleteproduct/${id}`, {
+            fetch(`https://truckbazar-server-side.vercel.app/deleteproduct/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('patient-token')}`

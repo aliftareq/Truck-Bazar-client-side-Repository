@@ -51,7 +51,7 @@ const Login = () => {
     // send user data to database
     const saveUserInDB = (name, email, role = 'Buyer') => {
         const user = { name, email, role }
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://truckbazar-server-side.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

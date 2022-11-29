@@ -14,7 +14,7 @@ const AddProducts = () => {
 
     //getting this seller info
     useEffect(() => {
-        fetch(`http://localhost:5000/user?email=${user?.email}`)
+        fetch(`https://truckbazar-server-side.vercel.app/user?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 //console.log(data);
@@ -81,7 +81,7 @@ const AddProducts = () => {
                     }
                     console.log(product);
                     //save product info to database
-                    fetch(`http://localhost:5000/addproduct`, {
+                    fetch(`https://truckbazar-server-side.vercel.app/addproduct`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

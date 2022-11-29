@@ -9,7 +9,11 @@ const AllSellers = () => {
     const { data: users, isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/sellers`)
+            const res = await fetch(`https://truckbazar-server-side.vercel.app/sellers`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
+                }
+            })
             const data = await res.json()
             return data
         }
@@ -24,7 +28,7 @@ const AllSellers = () => {
 
     //1. for making user varifed
     const handleVarifyUser = id => {
-        fetch(`http://localhost:5000/users/verify/${id}`, {
+        fetch(`https://truckbazar-server-side.vercel.app/users/verify/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('user-token')}`
@@ -43,7 +47,7 @@ const AllSellers = () => {
 
     //2. for making admin
     const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://truckbazar-server-side.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('user-token')}`
@@ -63,7 +67,7 @@ const AllSellers = () => {
     const handledeleteUser = id => {
         const ans = window.confirm('Are you Sure about to delete this user?')
         if (ans) {
-            fetch(`http://localhost:5000/users/delete/${id}`, {
+            fetch(`https://truckbazar-server-side.vercel.app/users/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('user-token')}`

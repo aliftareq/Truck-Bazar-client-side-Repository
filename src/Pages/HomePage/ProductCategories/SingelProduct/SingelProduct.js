@@ -7,7 +7,7 @@ const SingelProduct = ({ product, setProduct }) => {
 
     //handlers
     const handleRepoert = (id) => {
-        fetch(`http://localhost:5000/product/reportItems/${id}`, {
+        fetch(`https://truckbazar-server-side.vercel.app/product/reportItems/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

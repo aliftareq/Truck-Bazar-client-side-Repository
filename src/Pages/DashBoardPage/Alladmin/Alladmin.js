@@ -9,7 +9,11 @@ const Alladmin = () => {
     const { data: users, isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/admin`)
+            const res = await fetch(`https://truckbazar-server-side.vercel.app/admin`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
+                }
+            })
             const data = await res.json()
             return data
         }
@@ -24,7 +28,7 @@ const Alladmin = () => {
 
     //1. for making admin
     const handleRemoveFromAdmin = id => {
-        fetch(`http://localhost:5000/users/remove-from-admin/${id}`, {
+        fetch(`https://truckbazar-server-side.vercel.app/users/remove-from-admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('user-token')}`

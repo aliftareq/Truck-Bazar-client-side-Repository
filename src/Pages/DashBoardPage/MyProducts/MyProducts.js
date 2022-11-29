@@ -12,7 +12,7 @@ const MyProducts = () => {
     const { data: products, isLoading, refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproducts?email=${user?.email}`, {
+            const res = await fetch(`https://truckbazar-server-side.vercel.app/myproducts?email=${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('user-token')}`
                 }
@@ -29,7 +29,7 @@ const MyProducts = () => {
     const handledeleteUser = id => {
         const ans = window.confirm('Are you Sure about to delete this product?')
         if (ans) {
-            fetch(`http://localhost:5000/deleteproduct/${id}`, {
+            fetch(`https://truckbazar-server-side.vercel.app/deleteproduct/${id}`, {
                 method: 'DELETE',
                 headers: {
                     authorization: `bearer ${localStorage.getItem('user-token')}`
@@ -48,7 +48,7 @@ const MyProducts = () => {
     }
     //2. for updating advertise
     const handleadvertise = id => {
-        fetch(`http://localhost:5000/product/advertise/${id}`, {
+        fetch(`https://truckbazar-server-side.vercel.app/product/advertise/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('user-token')}`
