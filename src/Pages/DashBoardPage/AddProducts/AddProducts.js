@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { format } from 'date-fns';
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -6,19 +7,20 @@ import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const AddProducts = () => {
+    //states
     const [currentUser, setCurrentUser] = useState({})
     const [extraError, setExtraError] = useState('')
 
     //context value 
     const { user } = useContext(AuthContext)
 
-    //getting this seller info
+    //loading data 
+    //getting this seller info -1
     useEffect(() => {
-        fetch(`https://truckbazar-server-side.vercel.app/user?email=${user?.email}`)
-            .then(res => res.json())
+        axios.get(`https://truckbazar-server-side.vercel.app/user?email=${user?.email}`)
             .then(data => {
-                //console.log(data);
-                setCurrentUser(data)
+                //console.log(data.data)
+                setCurrentUser(data.data)
             })
     }, [user?.email])
 

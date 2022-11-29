@@ -1,23 +1,28 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import banner from '../../../Assets/images/advertisementBanner.jpg'
+import LoadingSpinner from '../../Shared/LoadingSpinner/LoadingSpinner';
 import AdvertiseItem from './AdvertiseItem/AdvertiseItem';
 
 const Advertisement = () => {
 
-    //states
-    const [products, SetProducts] = useState([])
-
     //loading data 
-    axios.get(`https://truckbazar-server-side.vercel.app/advertiseProducts`, {
-        headers: {
-            authorization: `bearer ${localStorage.getItem('user-token')}`
+    const { data: products, isLoading } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch(`https://truckbazar-server-side.vercel.app/advertiseProducts`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('user-token')}`
+                }
+            })
+            const data = await res.json()
+            return data
         }
     })
-        .then(data => {
-            //console.log(data.data)
-            SetProducts(data.data)
-        })
+
+    if (isLoading) {
+        return <LoadingSpinner></LoadingSpinner>
+    }
     return (
         <div>
             {
