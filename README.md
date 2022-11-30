@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Truck Bazar projects Repository
+ 
+An Website to Buying and selling Second Hand Truck . It helps whoever is struggling to sell his/her old truck and whoever wants to own a second hand truck at a cheap Price.Actually this website creates a bridge between buyers and sellers and they will be mutually helped by each other. I have a lot of truck owner feels very helpless to selling their own old trucks/vehicle, on the other hand many small companies and novice entrepreneur wants to start his business with small capital , so i thought this project will be very helpful for both of them , it will connect them and will influence to help each other. It is now in operation . If the demand of this website gets higher day by day I will try to enlarge the scale of this website. If you want to know more about this website feel free to visit the following website link. Have a good day!!!
+ 
+***
+## What was done in this project(Description):
+* The main focus of this project Integrating both frontend and backend technologies as it is a full-stack website.
+*  Implemented Login and signup with Email-password , google  with the help of firebase.
+* In this project and image uploading system have been implemented
+*  There is also added a Feature of Private is repeated inspiring by my previous project, here i implemented private route for "Dashboard" and "Products Category"
+* I also implement "Admin Route" & "Seller Route" where only the admin gets access to the admin routes and the seller will get of his own seller route.
+* In some portions I have used the react "useContext" hook to distribute the user data and the others function through the Project code and files.
+* Most fascinating and for the very first time I have implemented Payment Gateway and payment system Through stripe in this project.
+*  There many kinds of functionalities have been implemented , most importantly "useAuthStateChange '' for holding the state of the user and the unSubscribe function for preventing memory leak.
+* For a secured entry and access for every single user "JWT/ Json Web Token" was implemented. It was used For saving our private data of our user. No one can Access the Data without A token.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Live Link
+***
+Hosted in firebase -> [Truck Bazar](https://truck-bazar.web.app/)
 
-## Available Scripts
+## admin-email & password
+***
+* Email : rahim@gmail.com
+* password : 123456A@a
 
-In the project directory, you can run:
+## Technologies
+***
+A list of technologies used within the project:
+* [React](https://reactjs.org/): Version 18.2.0
+* [React router](https://reactrouter.com/en/main): Version 6.4.2
+* [React Hook Form](https://react-hook-form.com/get-started): version: 7.39.7,
+* [React Query](https://tanstack.com/query/v4/docs/overview): version: 3.39.2,
+* [React tostify](https://www.npmjs.com/package/react-toastify): Version 9.0.8,
+* [Date fns](https://date-fns.org/): version: 2.29.3,
+* [MongoDb Atlas](https://www.mongodb.com/atlas/database): MongoDB 6.0.
+* [Stripe](https://stripe.com/docs/payments?payments=popular): version 2022-11-15.
+* [Firebase](https://firebase.google.com/docs/auth/web/firebaseui?hl=en&authuser=0): v10.1.0
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Resources & Credits
+***
+Tailwind Components -> 
+[Kitwind](https://kitwind.io/products/kometa/components)
+[mambaUI](https://www.mambaui.com/components)
+[DaisyUI](https://daisyui.com/components/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Other Resources
+***
+* Icon -> [React Icons](https://react-icons.github.io/react-icons/)
+* FavIcon -> [Freepic](https://www.freepik.com/)
+* Images -> [Freepic](https://www.freepik.com/)
