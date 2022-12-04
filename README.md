@@ -18,10 +18,7 @@ An Website to Buying and selling Second Hand Truck . It helps whoever is struggl
 ***
 Hosted in firebase -> [Truck Bazar](https://truck-bazar.web.app/)
 
-## admin-email & password
-***
-* Email : rahim@gmail.com
-* password : 123456A@a
+<!--  -->
 
 ## Technologies
 ***
